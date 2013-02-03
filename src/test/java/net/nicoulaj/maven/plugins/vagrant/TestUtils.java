@@ -16,9 +16,7 @@
 package net.nicoulaj.maven.plugins.vagrant;
 
 import java.io.File;
-import java.io.IOException;
-
-import static java.io.File.createTempFile;
+import java.util.UUID;
 
 /**
  * Static utilities for tests.
@@ -29,20 +27,14 @@ import static java.io.File.createTempFile;
 public class TestUtils {
 
     public static File getTempDirectory() {
-        final File tmp = new File("target/tests-workspace");
-        tmp.delete();
+        final File tmp = new File("target/test-workspace");
         tmp.mkdir();
         return tmp;
     }
 
     public static File getUniqueTempDirectory() {
-        try {
-            final File tmp = createTempFile("test-", "", getTempDirectory());
-            tmp.delete();
-            tmp.mkdir();
-            return tmp;
-        } catch (IOException e) {
-            throw new RuntimeException("Failed creating temporary directory", e);
-        }
+        final File tmp = new File(getTempDirectory(), UUID.randomUUID().toString());
+        tmp.mkdir();
+        return tmp;
     }
 }
