@@ -42,13 +42,13 @@ import static org.codehaus.plexus.util.StringUtils.join;
 abstract class AbstractVagrantMojo extends AbstractGemMojo {
 
     /**
-     * Custom {@code VAGRANT_RC}, which is the configuration file used by Vagrant.
+     * Custom gems directory.
      * <p/><p/>
      * Modifying this property has an impact on isolation/build portability, eg:
      * <ul>
-     * <li>In {@code project.build.directory} (default): user installation can not impact build.</li>
-     * <li>In {@code project.basedir}: user installation can not impact build.</li>
-     * <li>In {@code ~/.vagrantrc} (Vagrant default): user installation can impact build.</li>
+     * <li>In {@code project.build.directory} (default): user installation can not impact build, but gems are unpacked at every build.</li>
+     * <li>In {@code project.basedir}: user installation can not impact build, gems are unpacked once for all, but files are created outside of build directory.</li>
+     * <li>Outside {@code project.basedir} (Vagrant default): user installation can impact build.</li>
      * </ul>
      *
      * @parameter default-value="${project.build.directory}/vagrant/gems"
