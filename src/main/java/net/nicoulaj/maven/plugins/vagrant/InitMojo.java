@@ -13,12 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.nicoulaj.maven.plugins.vagrant.mojo;
+package net.nicoulaj.maven.plugins.vagrant;
 
-import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.MojoFailureException;
-import org.apache.maven.plugins.annotations.Mojo;
-import org.apache.maven.plugins.annotations.Parameter;
+import de.saumya.mojo.ruby.script.ScriptException;
+
+import java.io.IOException;
 
 import static org.codehaus.plexus.util.StringUtils.isEmpty;
 
@@ -26,39 +25,38 @@ import static org.codehaus.plexus.util.StringUtils.isEmpty;
  * Invokes Vagrant {@code init} command.
  *
  * @author <a href="http://github.com/nicoulaj">Julien Nicoulaud</a>
+ * @goal init
  * @since 1.0
  */
-@Mojo(name = InitMojo.NAME,
-      requiresProject = true,
-      inheritByDefault = false,
-      threadSafe = false)
 public final class InitMojo extends AbstractVagrantMojo {
 
-    /** Mojo name * */
+    /** Mojo/Vagrant command name. * */
     public static final String NAME = "init";
 
-    /** Box name. */
-    @Parameter
+    /**
+     * Box name.
+     *
+     * @parameter
+     */
     protected String boxName;
 
-    /** Box URL. */
-    @Parameter
+    /**
+     * Box URL.
+     *
+     * @parameter
+     */
     protected String boxURL;
 
     @Override
-    public void execute() throws MojoExecutionException, MojoFailureException {
-        try {
-            if (isEmpty(boxName))
-                getVagrant().cli(NAME);
+    protected final void doExecute() throws IOException, ScriptException {
 
-            else if (isEmpty(boxURL))
-                getVagrant().cli(NAME, boxName);
+        if (isEmpty(boxName))
+            cli(NAME);
 
-            else
-                getVagrant().cli(NAME, boxName, boxURL);
+        else if (isEmpty(boxURL))
+            cli(NAME, boxName);
 
-        } catch (Exception e) {
-            throw new MojoFailureException("Vagrant execution failed", e);
-        }
+        else
+            cli(NAME, boxName, boxURL);
     }
 }
