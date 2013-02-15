@@ -30,6 +30,7 @@ import org.codehaus.plexus.archiver.UnArchiver;
 import java.io.File;
 import java.io.IOException;
 
+import static java.util.Arrays.asList;
 import static org.codehaus.plexus.util.StringUtils.join;
 
 /**
@@ -183,11 +184,15 @@ abstract class AbstractVagrantMojo extends AbstractGemMojo {
     abstract protected void doExecute() throws IOException, ScriptException;
 
     protected final void cli(String... args) throws IOException, ScriptException {
+        cli(asList(args));
+    }
+
+    protected final void cli(Iterable<String> args) throws IOException, ScriptException {
         factory.addEnv("VAGRANT_HOME", vagrantHome);
         factory.addEnv("VAGRANT_RC", vagrantRc);
         factory.newScript(
                 "require 'vagrant';" +
-                "Vagrant::Environment.new.cli '" + join(args, "','") + "'"
+                "Vagrant::Environment.new.cli '" + join(args.iterator(), "','") + "'"
         ).execute();
     }
 }

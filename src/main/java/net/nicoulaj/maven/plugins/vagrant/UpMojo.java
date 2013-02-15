@@ -18,6 +18,7 @@ package net.nicoulaj.maven.plugins.vagrant;
 import de.saumya.mojo.ruby.script.ScriptException;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.codehaus.plexus.util.StringUtils.join;
@@ -32,8 +33,15 @@ import static org.codehaus.plexus.util.StringUtils.join;
 @SuppressWarnings("unused")
 public final class UpMojo extends AbstractVagrantMojo {
 
-    /** Mojo/Vagrant command name. * */
+    /** Mojo/Vagrant command name. */
     public static final String NAME = "up";
+
+    /**
+     * VM name.
+     *
+     * @parameter
+     */
+    protected String vm;
 
     /**
      * Enable or disable provisioning.
@@ -52,13 +60,24 @@ public final class UpMojo extends AbstractVagrantMojo {
     @Override
     protected final void doExecute() throws IOException, ScriptException {
 
+        final List<String> args = new ArrayList<String>();
+
+        args.add(NAME);
+
+        if (vm != null)
+            args.add(vm);
+
         if (!provision)
-            cli(NAME, "--no-provision");
+            args.add("--no-provision");
 
-        else if (provisioners != null && !provisioners.isEmpty())
-            cli(NAME, "--provision", "--provision-with", join(provisioners.iterator(), ","));
+        else if (provisioners != null && !provisioners.isEmpty()) {
+            args.add("--provision");
+            args.add("--provision-with");
+            args.add(join(provisioners.iterator(), ","));
 
-        else
-            cli(NAME, "--provision");
+        } else
+            args.add("--provision");
+
+        cli(args);
     }
 }
