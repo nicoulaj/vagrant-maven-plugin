@@ -161,4 +161,15 @@ public class PrePostBuildScriptHelper {
     public void assertBuildLogDoesNotContain(String search) throws Exception {
         assertFileDoesNotContain(BUILD_LOG_FILE, search);
     }
+
+    /**
+     * Delete the given file if it exists.
+     *
+     * @param file path to the file relative to basedir
+     * @throws Exception if conditions are not fulfilled.
+     */
+    public void deleteIfExists(String file) throws Exception {
+        final File f = new File(baseDirectory, file);
+        if (f.exists() && f.isFile()) f.delete();
+    }
 }

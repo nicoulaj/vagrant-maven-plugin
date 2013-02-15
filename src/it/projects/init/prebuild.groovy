@@ -16,4 +16,5 @@
 
 import net.nicoulaj.maven.plugins.vagrant.it.PrePostBuildScriptHelper
 
-new File(basedir, "Vagrantfile").delete();
+helper = new PrePostBuildScriptHelper(basedir, localRepositoryPath, context)
+helper.deleteIfExists("Vagrantfile");
