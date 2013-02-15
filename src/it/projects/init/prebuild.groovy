@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-import net.nicoulaj.maven.plugins.vagrant.it.SelectorHelper;
+import net.nicoulaj.maven.plugins.vagrant.it.PrePostBuildScriptHelper
 
-// Skip if VirtualBox is not installed
-return SelectorHelper.isVirtualBoxAvailable();
+new File(basedir, "Vagrantfile").delete();

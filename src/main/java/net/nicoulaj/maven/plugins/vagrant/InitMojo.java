@@ -28,6 +28,7 @@ import static org.codehaus.plexus.util.StringUtils.isEmpty;
  * @goal init
  * @since 1.0
  */
+@SuppressWarnings("unused")
 public final class InitMojo extends AbstractVagrantMojo {
 
     /** Mojo/Vagrant command name. * */

@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import net.nicoulaj.maven.plugins.vagrant.it.PostBuildScriptHelper
+import net.nicoulaj.maven.plugins.vagrant.it.PrePostBuildScriptHelper
 
 try {
-    PostBuildScriptHelper helper = new PostBuildScriptHelper(basedir, localRepositoryPath, context)
+    helper = new PrePostBuildScriptHelper(basedir, localRepositoryPath, context)
     helper.assertBuildLogContains("vagrant-maven-plugin:");
     helper.assertFileExists("Vagrantfile")
     helper.assertFileContains("Vagrantfile", "config.vm.box = \"testing\"")

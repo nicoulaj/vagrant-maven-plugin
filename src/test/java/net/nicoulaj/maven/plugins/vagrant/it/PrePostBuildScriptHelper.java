@@ -30,7 +30,7 @@ import java.util.Map;
  *      maven-invoker-plugin post-build script invocation</a>
  * @since 1.0
  */
-public class PostBuildScriptHelper {
+public class PrePostBuildScriptHelper {
 
     /** The name of the build log file. */
     public static final String BUILD_LOG_FILE = "build.log";
@@ -45,7 +45,7 @@ public class PostBuildScriptHelper {
     protected Map context;
 
     /**
-     * Build a new {@link PostBuildScriptHelper} instance.
+     * Build a new {@link PrePostBuildScriptHelper} instance.
      *
      * @param baseDirectory       the absolute path to the base directory of the test project..
      * @param localRepositoryPath the absolute path to the local repository used for the Maven invocation on the test
@@ -55,7 +55,7 @@ public class PostBuildScriptHelper {
      * @see <a href="http://maven.apache.org/plugins/maven-invoker-plugin/examples/post-build-script.html">
      *      maven-invoker-plugin post-build script invocation</a>
      */
-    public PostBuildScriptHelper(File baseDirectory, File localRepositoryPath, Map context) {
+    public PrePostBuildScriptHelper(File baseDirectory, File localRepositoryPath, Map context) {
         this.baseDirectory = baseDirectory;
         this.localRepositoryPath = localRepositoryPath;
         this.context = context;
