@@ -43,7 +43,7 @@ abstract class AbstractVagrantMojo extends AbstractGemMojo {
 
     /**
      * Custom gems directory.
-     * <p/><p/>
+     * <p/>
      * Modifying this property has an impact on isolation/build portability, eg:
      * <ul>
      * <li>In {@code project.build.directory} (default): user installation can not impact build, but gems are unpacked at every build.</li>
@@ -58,7 +58,7 @@ abstract class AbstractVagrantMojo extends AbstractGemMojo {
 
     /**
      * Custom {@code VAGRANT_HOME}, which is the directory where Vagrant boxes are stored.
-     * <p/><p/>
+     * <p/>
      * Modifying this property has an impact on isolation/build portability, eg:
      * <ul>
      * <li>In {@code project.build.directory} (default): boxes must be imported every time, but no file is created outside of build directory.</li>
@@ -73,7 +73,7 @@ abstract class AbstractVagrantMojo extends AbstractGemMojo {
 
     /**
      * Custom {@code VAGRANT_RC}, which is the configuration file used by Vagrant.
-     * <p/><p/>
+     * <p/>
      * Modifying this property has an impact on isolation/build portability, eg:
      * <ul>
      * <li>In {@code project.build.directory} (default): user installation can not impact build.</li>

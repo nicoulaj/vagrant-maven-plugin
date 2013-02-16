@@ -21,8 +21,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.codehaus.plexus.util.StringUtils.join;
-
 /**
  * Invokes Vagrant {@code halt} command.
  *
@@ -51,7 +49,7 @@ public final class HaltMojo extends AbstractVagrantMojo {
     protected boolean force;
 
     @Override
-    protected final void doExecute() throws IOException, ScriptException {
+    protected void doExecute() throws IOException, ScriptException {
 
         final List<String> args = new ArrayList<String>();
 

@@ -58,7 +58,7 @@ public final class UpMojo extends AbstractVagrantMojo {
     protected List<String> provisioners;
 
     @Override
-    protected final void doExecute() throws IOException, ScriptException {
+    protected void doExecute() throws IOException, ScriptException {
 
         final List<String> args = new ArrayList<String>();
 
