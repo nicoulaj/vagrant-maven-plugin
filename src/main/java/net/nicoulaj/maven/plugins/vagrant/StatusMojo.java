@@ -19,6 +19,8 @@ import de.saumya.mojo.ruby.script.ScriptException;
 
 import java.io.IOException;
 
+import static org.codehaus.plexus.util.StringUtils.isEmpty;
+
 /**
  * Invokes Vagrant {@code status} command.
  *
@@ -42,7 +44,7 @@ public final class StatusMojo extends AbstractVagrantMojo {
     @Override
     protected void doExecute() throws IOException, ScriptException {
 
-        if (vm != null)
+        if (!isEmpty(vm))
             cli(NAME, vm);
 
         else

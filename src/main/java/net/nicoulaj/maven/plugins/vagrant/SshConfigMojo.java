@@ -18,6 +18,10 @@ package net.nicoulaj.maven.plugins.vagrant;
 import de.saumya.mojo.ruby.script.ScriptException;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.codehaus.plexus.util.StringUtils.isEmpty;
 
 /**
  * Invokes Vagrant {@code ssh-config} command.
@@ -49,13 +53,18 @@ public final class SshConfigMojo extends AbstractVagrantMojo {
     @Override
     protected void doExecute() throws IOException, ScriptException {
 
-        if (vm != null && host != null)
-            cli(NAME, vm, "--host", host);
+        final List<String> args = new ArrayList<String>();
 
-        else if (vm != null)
-            cli(NAME, vm);
+        args.add(NAME);
 
-        else
-            cli(NAME);
+        if (!isEmpty(vm))
+            args.add(vm);
+
+        if (!isEmpty(host)) {
+            args.add("--host");
+            args.add(host);
+        }
+
+        cli(args);
     }
 }

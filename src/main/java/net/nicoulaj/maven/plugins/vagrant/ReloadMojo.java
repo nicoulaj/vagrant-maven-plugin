@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.codehaus.plexus.util.StringUtils.isEmpty;
 import static org.codehaus.plexus.util.StringUtils.join;
 
 /**
@@ -64,7 +65,7 @@ public final class ReloadMojo extends AbstractVagrantMojo {
 
         args.add(NAME);
 
-        if (vm != null)
+        if (!isEmpty(vm))
             args.add(vm);
 
         if (!provision)

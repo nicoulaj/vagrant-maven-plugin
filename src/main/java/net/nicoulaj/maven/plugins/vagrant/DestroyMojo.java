@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.codehaus.plexus.util.StringUtils.isEmpty;
+
 /**
  * Invokes Vagrant {@code destroy} command.
  *
@@ -55,7 +57,7 @@ public final class DestroyMojo extends AbstractVagrantMojo {
 
         args.add(NAME);
 
-        if (vm != null)
+        if (!isEmpty(vm))
             args.add(vm);
 
         if (force)
