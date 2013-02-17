@@ -22,3 +22,7 @@ release.properties
 # Vagrant files
 Vagrantfile
 .vagrant.d/
+*.box
+
+# Local stuff
+/local/
