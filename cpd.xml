@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pmd-cpd>
 <duplication lines="40" tokens="125">
-<file line="45" path="/home/nicoulaj/projects/vagrant-maven-plugin/src/main/java/net/nicoulaj/maven/plugins/vagrant/ReloadMojo.java"/>
-<file line="45" path="/home/nicoulaj/projects/vagrant-maven-plugin/src/main/java/net/nicoulaj/maven/plugins/vagrant/UpMojo.java"/>
+<file line="45" path="/home/nicoulaj/projects/vagrant-maven-plugin/target/checkout/src/main/java/net/nicoulaj/maven/plugins/vagrant/ReloadMojo.java"/>
+<file line="45" path="/home/nicoulaj/projects/vagrant-maven-plugin/target/checkout/src/main/java/net/nicoulaj/maven/plugins/vagrant/UpMojo.java"/>
 <codefragment>
 <![CDATA[
     protected String vm;
