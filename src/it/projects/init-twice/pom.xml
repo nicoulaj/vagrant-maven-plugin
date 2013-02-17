@@ -20,7 +20,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>net.ju-n.maven.plugins.vagrant.it</groupId>
-  <artifactId>init</artifactId>
+  <artifactId>init-twice</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
@@ -34,6 +34,7 @@
           <execution>
             <phase>test</phase>
             <goals>
+              <goal>init</goal>
               <goal>init</goal>
             </goals>
             <configuration>
