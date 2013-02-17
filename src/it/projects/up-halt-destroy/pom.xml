@@ -20,7 +20,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>net.ju-n.maven.plugins.vagrant.it</groupId>
-  <artifactId>suspend</artifactId>
+  <artifactId>halt</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
@@ -34,8 +34,16 @@
           <execution>
             <phase>test</phase>
             <goals>
-              <goal>suspend</goal>
+              <goal>box-add</goal>
+              <goal>init</goal>
+              <goal>up</goal>
+              <goal>halt</goal>
+              <goal>destroy</goal>
             </goals>
+            <configuration>
+              <box>testbox</box>
+              <url>@test.box.url@</url>
+            </configuration>
           </execution>
         </executions>
       </plugin>

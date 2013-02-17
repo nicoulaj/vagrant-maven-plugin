@@ -38,7 +38,7 @@
               <goal>status</goal>
             </goals>
             <configuration>
-              <name>testbox</name>
+              <box>testbox</box>
               <url>@test.box.url@</url>
             </configuration>
           </execution>

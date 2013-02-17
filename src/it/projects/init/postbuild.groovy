@@ -18,10 +18,16 @@ import net.nicoulaj.maven.plugins.vagrant.it.PrePostBuildScriptHelper
 
 try {
     helper = new PrePostBuildScriptHelper(basedir, localRepositoryPath, context)
-    helper.assertBuildLogContains("vagrant-maven-plugin:");
+
+    // vagrant-maven-plugin invoked
+    helper.assertBuildLogContains("vagrant-maven-plugin:")
+
+    // init goal successful
+    helper.assertBuildLogContains(":init")
     helper.assertBuildLogContains("A `Vagrantfile` has been placed in this directory")
     helper.assertFileExists("Vagrantfile")
     helper.assertFileContains("Vagrantfile", "config.vm.box = \"testbox\"")
+
 }
 catch (Exception e) {
     System.err.println(e.getMessage())

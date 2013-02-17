@@ -22,15 +22,27 @@ try {
     // vagrant-maven-plugin invoked
     helper.assertBuildLogContains("vagrant-maven-plugin:")
 
+    // box-add goal successful
+    helper.assertBuildLogContains(":box-add")
+    helper.assertBuildLogContains("Cleaning up downloaded box")
+
     // init goal successful
     helper.assertBuildLogContains(":init")
     helper.assertBuildLogContains("A `Vagrantfile` has been placed in this directory")
     helper.assertFileExists("Vagrantfile")
     helper.assertFileContains("Vagrantfile", "config.vm.box = \"testbox\"")
 
-    // second init invokation failed
-    helper.assertBuildLogContains(":init")
-    helper.assertBuildLogContains("`Vagrantfile` already exists in this directory")
+    // up goal successful
+    helper.assertBuildLogContains(":up")
+    helper.assertBuildLogContains("VM booted and ready for use!")
+
+    // halt goal successful
+    helper.assertBuildLogContains(":halt")
+    helper.assertBuildLogContains("Attempting graceful shutdown of VM")
+
+    // destroy goal successful
+    helper.assertBuildLogContains(":destroy")
+    helper.assertBuildLogContains("Destroying VM and associated drives")
 
 }
 catch (Exception e) {

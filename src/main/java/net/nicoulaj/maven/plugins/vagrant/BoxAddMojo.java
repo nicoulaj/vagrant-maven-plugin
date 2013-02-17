@@ -33,12 +33,12 @@ public final class BoxAddMojo extends AbstractVagrantMojo {
     public static final String NAME = "box-add";
 
     /**
-     * VM name.
+     * Box name.
      *
      * @parameter
      * @required
      */
-    protected String name;
+    protected String box;
 
     /**
      * VM URL.
@@ -59,9 +59,9 @@ public final class BoxAddMojo extends AbstractVagrantMojo {
     protected void doExecute() throws IOException, ScriptException {
 
         if (force)
-            cli("box", "add", name, url, "--force");
+            cli("box", "add", box, url, "--force");
 
         else
-            cli("box", "add", name, url);
+            cli("box", "add", box, url);
     }
 }

@@ -74,8 +74,10 @@ public final class SshMojo extends AbstractVagrantMojo {
         if (!isEmpty(vm))
             args.add(vm);
 
-        if (!isEmpty(command))
-            args.add("--no-provision");
+        if (!isEmpty(command)) {
+            args.add("--command");
+            args.add(command);
+        }
 
         if (plain)
             args.add("--plain");

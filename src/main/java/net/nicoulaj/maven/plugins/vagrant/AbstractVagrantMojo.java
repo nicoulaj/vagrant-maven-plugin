@@ -17,6 +17,7 @@ package net.nicoulaj.maven.plugins.vagrant;
 
 import de.saumya.mojo.gem.AbstractGemMojo;
 import de.saumya.mojo.ruby.gems.GemManager;
+import de.saumya.mojo.ruby.script.Script;
 import de.saumya.mojo.ruby.script.ScriptException;
 import org.apache.maven.artifact.repository.ArtifactRepository;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -31,7 +32,6 @@ import java.io.File;
 import java.io.IOException;
 
 import static java.util.Arrays.asList;
-import static org.codehaus.plexus.util.StringUtils.join;
 
 /**
  * Base class for {@code Mojo}s invoking Vagrant.
@@ -190,8 +190,8 @@ abstract class AbstractVagrantMojo extends AbstractGemMojo {
     protected final void cli(Iterable<String> args) throws IOException, ScriptException {
         factory.addEnv("VAGRANT_HOME", vagrantHome);
         factory.addEnv("VAGRANT_RC", vagrantRc);
-        factory.newScriptFromSearchPath("vagrant")
-               .addArgs(join(args.iterator(), " "))
-               .execute();
+        final Script script = factory.newScriptFromSearchPath("vagrant");
+        for (String arg : args) script.addArg(arg);
+        script.execute();
     }
 }

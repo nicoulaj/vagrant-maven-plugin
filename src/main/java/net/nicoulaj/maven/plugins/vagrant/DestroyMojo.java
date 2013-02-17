@@ -46,7 +46,7 @@ public final class DestroyMojo extends AbstractVagrantMojo {
     /**
      * Force shut down.
      *
-     * @parameter default-value="false"
+     * @parameter default-value="true"
      */
     protected boolean force;
 

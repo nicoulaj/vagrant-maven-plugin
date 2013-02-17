@@ -33,15 +33,15 @@ public final class BoxRemoveMojo extends AbstractVagrantMojo {
     public static final String NAME = "box-remove";
 
     /**
-     * VM name.
+     * Box name.
      *
      * @parameter
      * @required
      */
-    protected String name;
+    protected String box;
 
     @Override
     protected void doExecute() throws IOException, ScriptException {
-        cli("box", "remove", name);
+        cli("box", "remove", box);
     }
 }

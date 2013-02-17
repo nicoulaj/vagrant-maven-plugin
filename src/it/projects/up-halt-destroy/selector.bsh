@@ -14,14 +14,7 @@
  * limitations under the License.
  */
 
-import net.nicoulaj.maven.plugins.vagrant.it.PrePostBuildScriptHelper
+import net.nicoulaj.maven.plugins.vagrant.it.SelectorHelper;
 
-try {
-    helper = new PrePostBuildScriptHelper(basedir, localRepositoryPath, context)
-    helper.assertBuildLogContains("vagrant-maven-plugin:");
-    helper.assertBuildLogContains("A Vagrant environment is required to run this command");
-}
-catch (Exception e) {
-    System.err.println(e.getMessage())
-    return false;
-}
+// Skip if VirtualBox is not installed
+return SelectorHelper.isVirtualBoxAvailable();

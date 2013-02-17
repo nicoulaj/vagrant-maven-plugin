@@ -33,15 +33,15 @@ public final class BoxRepackageMojo extends AbstractVagrantMojo {
     public static final String NAME = "box-repackage";
 
     /**
-     * VM name.
+     * Box name.
      *
      * @parameter
      * @required
      */
-    protected String name;
+    protected String box;
 
     @Override
     protected void doExecute() throws IOException, ScriptException {
-        cli("box", "repackage", name);
+        cli("box", "repackage", box);
     }
 }

@@ -18,10 +18,22 @@ import net.nicoulaj.maven.plugins.vagrant.it.PrePostBuildScriptHelper
 
 try {
     helper = new PrePostBuildScriptHelper(basedir, localRepositoryPath, context)
+
+    // vagrant-maven-plugin invoked
     helper.assertBuildLogContains("vagrant-maven-plugin:")
+
+    // box-add goal successful
+    helper.assertBuildLogContains(":box-add")
     helper.assertBuildLogContains("Cleaning up downloaded box")
+
+    // box-list goal successful
+    helper.assertBuildLogContains(":box-list")
     helper.assertBuildLogContains("testbox")
+
+    // box-remove goal successful
+    helper.assertBuildLogContains(":box-remove")
     helper.assertBuildLogContains("Deleting box 'testbox'")
+
 }
 catch (Exception e) {
     System.err.println(e.getMessage())

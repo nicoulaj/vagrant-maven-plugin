@@ -16,12 +16,5 @@
 
 import net.nicoulaj.maven.plugins.vagrant.it.PrePostBuildScriptHelper
 
-try {
-    helper = new PrePostBuildScriptHelper(basedir, localRepositoryPath, context)
-    helper.assertBuildLogContains("vagrant-maven-plugin:");
-    helper.assertBuildLogContains("A Vagrant environment is required to run this command");
-}
-catch (Exception e) {
-    System.err.println(e.getMessage())
-    return false;
-}
+helper = new PrePostBuildScriptHelper(basedir, localRepositoryPath, context)
+helper.deleteIfExists("Vagrantfile");
