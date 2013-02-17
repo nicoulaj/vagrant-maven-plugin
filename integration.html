@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="Date-Revision-yyyymmdd" content="20130217" />
     <meta http-equiv="Content-Language" content="en" />
-    <title>Vagrant Maven plugin - </title>
+    <title>Vagrant Maven plugin - Continuous Integration</title>
     <link rel="stylesheet" href="./css/apache-maven-fluido-1.3.0.min.css" />
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
@@ -65,7 +65,7 @@
                 
             
                   <li id="publishDate">Last Published: 2013-02-17</li>
-                  <li class="divider">|</li> <li id="projectVersion">Version: 1.0-SNAPSHOT</li>
+                  <li class="divider">|</li> <li id="projectVersion">Version: 1.0.0-SNAPSHOT</li>
                       
                 
             
@@ -82,10 +82,12 @@
                 <ul class="nav nav-list">
                     <li class="nav-header">Overview</li>
                                 
-      <li class="active">
+      <li>
     
-            <a href="#"><i class="none"></i>Introduction</a>
-          </li>
+                          <a href="index.html" title="Introduction">
+          <i class="none"></i>
+        Introduction</a>
+            </li>
                   
       <li>
     
@@ -117,10 +119,12 @@
         Project Information</a>
                     <ul class="nav nav-list">
                       
-      <li class="active">
+      <li>
     
-            <a href="#"><i class="none"></i>About</a>
-          </li>
+                          <a href="index.html" title="About">
+          <i class="none"></i>
+        About</a>
+            </li>
                       
       <li>
     
@@ -150,12 +154,10 @@
         Project Plugins</a>
             </li>
                       
-      <li>
+      <li class="active">
     
-                          <a href="integration.html" title="Continuous Integration">
-          <i class="none"></i>
-        Continuous Integration</a>
-            </li>
+            <a href="#"><i class="none"></i>Continuous Integration</a>
+          </li>
                       
       <li>
     
@@ -241,84 +243,7 @@
                 
         <div id="bodyColumn"  class="span9" >
                                   
-            <blockquote>
-  <hr /><p><b><a class="externalLink" href="http://maven.apache.org">Maven</a> plugin for <a class="externalLink" href="http://www.vagrantup.com">Vagrant</a>.</b></p>
-  <hr /><h1><img src="images/maven.png" alt="Maven" />&#160;&#160;<b>|</b>&#160;&#160;<img src="images/vagrant.png" alt="Vagrant" /></h1>
-  <hr />
-</blockquote><div class="section"><div class="section"><div class="section"><div class="section"><h5>Goals Overview<a name="Goals_Overview"></a></h5><p>This plugin provides direct access to Vagrant commands:</p>
-<table border="0" class="table table-striped" style="width: 0%">
-  <tr class="a">
-    <th style="text-align: right">Vagrant command</th>
-    <th style="text-align: left">Maven goal</th>
-  </tr>
-  <tr class="b">
-    <td style="text-align: right"><tt>vagrant status</tt></td>
-    <td style="text-align: left"><a href="./status-mojo.html">vagrant:status</a></td>
-  </tr>
-  <tr class="a">
-    <td style="text-align: right"><tt>vagrant init</tt></td>
-    <td style="text-align: left"><a href="./init-mojo.html">vagrant:init</a></td>
-  </tr>
-  <tr class="b">
-    <td style="text-align: right"><tt>vagrant up</tt></td>
-    <td style="text-align: left"><a href="./up-mojo.html">vagrant:up</a></td>
-  </tr>
-  <tr class="a">
-    <td style="text-align: right"><tt>vagrant halt</tt></td>
-    <td style="text-align: left"><a href="./halt-mojo.html">vagrant:halt</a></td>
-  </tr>
-  <tr class="b">
-    <td style="text-align: right"><tt>vagrant destroy</tt></td>
-    <td style="text-align: left"><a href="./destroy-mojo.html">vagrant:destroy</a></td>
-  </tr>
-  <tr class="a">
-    <td style="text-align: right"><tt>vagrant package</tt></td>
-    <td style="text-align: left"><a href="./package-mojo.html">vagrant:package</a></td>
-  </tr>
-  <tr class="b">
-    <td style="text-align: right"><tt>vagrant provision</tt></td>
-    <td style="text-align: left"><a href="./provision-mojo.html">vagrant:provision</a></td>
-  </tr>
-  <tr class="a">
-    <td style="text-align: right"><tt>vagrant suspend</tt></td>
-    <td style="text-align: left"><a href="./suspend-mojo.html">vagrant:suspend</a></td>
-  </tr>
-  <tr class="b">
-    <td style="text-align: right"><tt>vagrant resume</tt></td>
-    <td style="text-align: left"><a href="./resume-mojo.html">vagrant:resume</a></td>
-  </tr>
-  <tr class="a">
-    <td style="text-align: right"><tt>vagrant reload</tt></td>
-    <td style="text-align: left"><a href="./reload-mojo.html">vagrant:reload</a></td>
-  </tr>
-  <tr class="b">
-    <td style="text-align: right"><tt>vagrant ssh</tt></td>
-    <td style="text-align: left"><a href="./ssh-mojo.html">vagrant:ssh</a></td>
-  </tr>
-  <tr class="a">
-    <td style="text-align: right"><tt>vagrant ssh-config</tt></td>
-    <td style="text-align: left"><a href="./ssh-config-mojo.html">vagrant:ssh-config</a></td>
-  </tr>
-  <tr class="b">
-    <td style="text-align: right"><tt>vagrant box add</tt></td>
-    <td style="text-align: left"><a href="./box-add-mojo.html">vagrant:box-add</a></td>
-  </tr>
-  <tr class="a">
-    <td style="text-align: right"><tt>vagrant box list</tt></td>
-    <td style="text-align: left"><a href="./box-list-mojo.html">vagrant:box-list</a></td>
-  </tr>
-  <tr class="b">
-    <td style="text-align: right"><tt>vagrant box remove</tt></td>
-    <td style="text-align: left"><a href="./box-remove-mojo.html">vagrant:box-remove</a></td>
-  </tr>
-  <tr class="a">
-    <td style="text-align: right"><tt>vagrant box repackage</tt></td>
-    <td style="text-align: left"><a href="./box-repackage-mojo.html">vagrant:box-repackage</a></td>
-  </tr>
-</table></div><div class="section"><h5>Examples<a name="Examples"></a></h5>
-<ul>
-  <li><a href="./examples/running-a-vm-during-integration-tests.html">Running a VM during integration tests</a></li>
-</ul></div></div></div></div>
+            <div class="section"><h2>Overview<a name="Overview"></a></h2><a name="Overview"></a><p>This project uses Continuous Integration System.</p></div><div class="section"><h2>Access<a name="Access"></a></h2><a name="Access"></a><p>The following is a link to the continuous integration system used by the project.</p><div class="source"><pre class="prettyprint"><a class="externalLink" href="https://buildhive.cloudbees.com/job/nicoulaj/job/vagrant-maven-plugin/">https://buildhive.cloudbees.com/job/nicoulaj/job/vagrant-maven-plugin/</a></pre></div></div><div class="section"><h2>Notifiers<a name="Notifiers"></a></h2><a name="Notifiers"></a><p>No notifiers are defined. Please check back at a later date.</p></div>
                   </div>
             </div>
           </div>

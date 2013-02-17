@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd-cpd>
+<duplication lines="40" tokens="125">
+<file line="45" path="/home/nicoulaj/projects/vagrant-maven-plugin/src/main/java/net/nicoulaj/maven/plugins/vagrant/ReloadMojo.java"/>
+<file line="45" path="/home/nicoulaj/projects/vagrant-maven-plugin/src/main/java/net/nicoulaj/maven/plugins/vagrant/UpMojo.java"/>
+<codefragment>
+<![CDATA[
+    protected String vm;
+
+    /**
+     * Enable or disable provisioning.
+     *
+     * @parameter default-value="true"
+     */
+    protected boolean provision;
+
+    /**
+     * Enable only certain provisioners, by type.
+     *
+     * @parameter
+     */
+    protected List<String> provisioners;
+
+    @Override
+    protected void doExecute() throws IOException, ScriptException {
+
+        final List<String> args = new ArrayList<String>();
+
+        args.add(NAME);
+
+        if (!isEmpty(vm))
+            args.add(vm);
+
+        if (!provision)
+            args.add("--no-provision");
+
+        else if (provisioners != null && !provisioners.isEmpty()) {
+            args.add("--provision");
+            args.add("--provision-with");
+            args.add(join(provisioners.iterator(), ","));
+
+        } else
+            args.add("--provision");
+
+        cli(args);
+    }
+}
+]]>
+</codefragment>
+</duplication>
+</pmd-cpd>
