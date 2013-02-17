@@ -65,27 +65,47 @@
     </site>
   </distributionManagement>
 
+  <properties>
+
+    <!-- versions -->
+    <java.level>1.5</java.level>
+    <vagrant.version>1.0.6</vagrant.version>
+    <gem-maven-plugin.version>0.29.3</gem-maven-plugin.version>
+    <maven-plugin-tools-javadoc.version>3.2</maven-plugin-tools-javadoc.version>
+
+    <!-- integration tests settings -->
+    <test.box>lucid32</test.box>
+    <test.box.version>1.0</test.box.version>
+    <test.box.directory>${project.build.directory}/it/boxes</test.box.directory>
+    <test.box.url>${test.box.directory}/${test.box}.box</test.box.url>
+
+  </properties>
+
   <repositories>
     <repository>
-      <id>rubygems-releases</id>
+      <id>rubygems</id>
       <url>http://rubygems-proxy.torquebox.org/releases</url>
     </repository>
   </repositories>
 
-  <properties>
-    <java.level>1.6</java.level>
-    <vagrant.version>1.0.6</vagrant.version>
-    <gem-maven-plugin.version>0.29.3</gem-maven-plugin.version>
-    <maven-plugin-tools-javadoc.version>3.2</maven-plugin-tools-javadoc.version>
-  </properties>
-
   <dependencyManagement>
     <dependencies>
+      <dependency>
+        <groupId>de.saumya.mojo</groupId>
+        <artifactId>gem-maven-plugin</artifactId>
+        <version>${gem-maven-plugin.version}</version>
+      </dependency>
       <dependency>
         <groupId>rubygems</groupId>
         <artifactId>vagrant</artifactId>
         <version>${vagrant.version}</version>
         <type>gem</type>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}.${project.artifactId}.it.boxes</groupId>
+        <artifactId>${test.box}</artifactId>
+        <version>${test.box.version}</version>
+        <type>zip</type>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -94,13 +114,18 @@
     <dependency>
       <groupId>de.saumya.mojo</groupId>
       <artifactId>gem-maven-plugin</artifactId>
-      <version>${gem-maven-plugin.version}</version>
     </dependency>
     <dependency>
       <groupId>rubygems</groupId>
       <artifactId>vagrant</artifactId>
       <type>gem</type>
       <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}.${project.artifactId}.it.boxes</groupId>
+      <artifactId>${test.box}</artifactId>
+      <type>zip</type>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
@@ -117,7 +142,7 @@
             <configuration>
               <rules>
                 <requireJavaVersion>
-                  <version>(1.5,1.7)</version>
+                  <version>(1.4,1.7)</version>
                 </requireJavaVersion>
               </rules>
             </configuration>
@@ -133,7 +158,7 @@
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <source>1.5</source>
+          <source>${java.level}</source>
           <target>${java.level}</target>
           <optimize>true</optimize>
           <showWarnings>true</showWarnings>
@@ -154,6 +179,23 @@
             <goals>
               <goal>helpmojo</goal>
             </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>unpack-test-boxes</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>unpack-dependencies</goal>
+            </goals>
+            <configuration>
+              <includeGroupIds>${project.groupId}.${project.artifactId}.it.boxes</includeGroupIds>
+              <includeScope>test</includeScope>
+              <outputDirectory>${test.box.directory}</outputDirectory>
+            </configuration>
           </execution>
         </executions>
       </plugin>
