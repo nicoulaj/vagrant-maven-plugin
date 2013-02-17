@@ -46,6 +46,9 @@
       <item name="Goals" href="plugin-info.html"/>
       <item name="Usage" href="usage.html"/>
     </menu>
+    <menu name="Examples">
+      <item name="Running a VM during integration tests" href="/examples/running-a-vm-during-integration-tests.html"/>
+    </menu>
     <menu ref="reports"/>
   </body>
 

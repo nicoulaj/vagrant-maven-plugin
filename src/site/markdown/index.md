@@ -14,20 +14,80 @@
 ##### Goals Overview
 
 
-This plugin allows to invoke Vagrant commands:
+This plugin provides direct access to Vagrant commands:
 
-* [vagrant:init](./init-mojo.html) invoke the Vagrant `init` command.
+<table style="width: 0%">
+  <tr>
+    <th style="text-align: right">Vagrant command</th>
+    <th style="text-align: left">Maven goal</th>
+  </tr>
+  <tr>
+    <td style="text-align: right"><code>vagrant status</code></td>
+    <td style="text-align: left"><a href="./status-mojo.html">vagrant:status</a></td>
+  </tr>
+  <tr>
+    <td style="text-align: right"><code>vagrant init</code></td>
+    <td style="text-align: left"><a href="./init-mojo.html">vagrant:init</a></td>
+  </tr>
+  <tr>
+    <td style="text-align: right"><code>vagrant up</code></td>
+    <td style="text-align: left"><a href="./up-mojo.html">vagrant:up</a></td>
+  </tr>
+  <tr>
+    <td style="text-align: right"><code>vagrant halt</code></td>
+    <td style="text-align: left"><a href="./halt-mojo.html">vagrant:halt</a></td>
+  </tr>
+  <tr>
+    <td style="text-align: right"><code>vagrant destroy</code></td>
+    <td style="text-align: left"><a href="./destroy-mojo.html">vagrant:destroy</a></td>
+  </tr>
+  <tr>
+    <td style="text-align: right"><code>vagrant package</code></td>
+    <td style="text-align: left"><a href="./package-mojo.html">vagrant:package</a></td>
+  </tr>
+  <tr>
+    <td style="text-align: right"><code>vagrant provision</code></td>
+    <td style="text-align: left"><a href="./provision-mojo.html">vagrant:provision</a></td>
+  </tr>
+  <tr>
+    <td style="text-align: right"><code>vagrant suspend</code></td>
+    <td style="text-align: left"><a href="./suspend-mojo.html">vagrant:suspend</a></td>
+  </tr>
+  <tr>
+    <td style="text-align: right"><code>vagrant resume</code></td>
+    <td style="text-align: left"><a href="./resume-mojo.html">vagrant:resume</a></td>
+  </tr>
+  <tr>
+    <td style="text-align: right"><code>vagrant reload</code></td>
+    <td style="text-align: left"><a href="./reload-mojo.html">vagrant:reload</a></td>
+  </tr>
+  <tr>
+    <td style="text-align: right"><code>vagrant ssh</code></td>
+    <td style="text-align: left"><a href="./ssh-mojo.html">vagrant:ssh</a></td>
+  </tr>
+  <tr>
+    <td style="text-align: right"><code>vagrant ssh-config</code></td>
+    <td style="text-align: left"><a href="./ssh-config-mojo.html">vagrant:ssh-config</a></td>
+  </tr>
+  <tr>
+    <td style="text-align: right"><code>vagrant box add</code></td>
+    <td style="text-align: left"><a href="./box-add-mojo.html">vagrant:box-add</a></td>
+  </tr>
+  <tr>
+    <td style="text-align: right"><code>vagrant box list</code></td>
+    <td style="text-align: left"><a href="./box-list-mojo.html">vagrant:box-list</a></td>
+  </tr>
+  <tr>
+    <td style="text-align: right"><code>vagrant box remove</code></td>
+    <td style="text-align: left"><a href="./box-remove-mojo.html">vagrant:box-remove</a></td>
+  </tr>
+  <tr>
+    <td style="text-align: right"><code>vagrant box repackage</code></td>
+    <td style="text-align: left"><a href="./box-repackage-mojo.html">vagrant:box-repackage</a></td>
+  </tr>
+</table>
 
 
-##### Usage
+##### Examples
 
-General instructions on how to use the vagrant plugin can be found on the [usage page](./usage.html).
-
-If you feel like the plugin is missing a feature or has a defect, you can fill a feature request or bug report in the
-[issue tracker](./issue-tracking.html). When creating a new issue, please provide a comprehensive description of your
-concern. Especially for fixing bugs it is crucial that the developers can reproduce your problem. For this reason,
-entire debug logs, POMs or most preferably little demo projects attached to the issue are very much appreciated.
-
-Of course, patches are welcome, too. Contributors can check out the project from the
-[source repository](./source-repository.html) and will find supplementary information in the
-[guide to helping with Maven](http://maven.apache.org/guides/development/guide-helping.html).
+* [Running a VM during integration tests](./examples/running-a-vm-during-integration-tests.html)

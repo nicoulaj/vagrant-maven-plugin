@@ -1,0 +1,36 @@
+Running a VM during integration tests
+=====================================
+
+Here is a sample configuration demonstrating how to start/stop a virtual machine during `integration-test` phase:
+
+    <plugin>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>${project.artifactId}</artifactId>
+      <version>${project.version}</version>
+      <executions>
+
+        <!-- Before tests: import box, start VM -->
+        <execution>
+          <id>setup-and-start-vagrant-vm</id>
+          <phase>pre-integration-test</phase>
+          <goals>
+            <goal>box-add</goal>
+            <goal>up</goal>
+          </goals>
+          <configuration>
+            <box>mytestbox</box>
+            <url>\${project.basedir}/src/test/resources/mytestbox.box</url>
+          </configuration>
+        </execution>
+
+        <!-- After tests: shut down, destroy VM -->
+        <execution>
+          <id>destroy-vagrant-vm</id>
+          <phase>post-integration-test</phase>
+          <goals>
+            <goal>destroy</goal>
+          </goals>
+        </execution>
+
+      </executions>
+    </plugin>
