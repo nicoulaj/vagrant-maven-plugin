@@ -34,8 +34,13 @@
           <execution>
             <phase>test</phase>
             <goals>
+              <goal>init</goal>
               <goal>status</goal>
             </goals>
+            <configuration>
+              <name>testbox</name>
+              <url>@test.box.url@</url>
+            </configuration>
           </execution>
         </executions>
       </plugin>
