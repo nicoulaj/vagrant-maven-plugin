@@ -190,9 +190,8 @@ abstract class AbstractVagrantMojo extends AbstractGemMojo {
     protected final void cli(Iterable<String> args) throws IOException, ScriptException {
         factory.addEnv("VAGRANT_HOME", vagrantHome);
         factory.addEnv("VAGRANT_RC", vagrantRc);
-        factory.newScript(
-                "require 'vagrant';" +
-                "Vagrant::Environment.new.cli '" + join(args.iterator(), "','") + "'"
-        ).execute();
+        factory.newScriptFromSearchPath("vagrant")
+               .addArgs(join(args.iterator(), " "))
+               .execute();
     }
 }
