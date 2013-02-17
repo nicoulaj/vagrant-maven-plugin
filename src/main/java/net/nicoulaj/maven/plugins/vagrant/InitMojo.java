@@ -39,25 +39,25 @@ public final class InitMojo extends AbstractVagrantMojo {
      *
      * @parameter
      */
-    protected String boxName;
+    protected String name;
 
     /**
      * Box URL.
      *
      * @parameter
      */
-    protected String boxURL;
+    protected String url;
 
     @Override
     protected void doExecute() throws IOException, ScriptException {
 
-        if (isEmpty(boxName))
+        if (isEmpty(name))
             cli(NAME);
 
-        else if (isEmpty(boxURL))
-            cli(NAME, boxName);
+        else if (isEmpty(url))
+            cli(NAME, name);
 
         else
-            cli(NAME, boxName, boxURL);
+            cli(NAME, name, url);
     }
 }
