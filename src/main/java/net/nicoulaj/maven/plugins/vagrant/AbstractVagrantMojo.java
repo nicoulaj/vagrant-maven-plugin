@@ -32,6 +32,7 @@ import java.io.File;
 import java.io.IOException;
 
 import static java.util.Arrays.asList;
+import static org.codehaus.plexus.util.StringUtils.isNotBlank;
 
 /**
  * Base class for {@code Mojo}s invoking Vagrant.
@@ -147,7 +148,6 @@ abstract class AbstractVagrantMojo extends AbstractGemMojo {
         super.localRepository = this.localRepository;
         super.classRealm = this.classRealm;
         super.repositorySystem = this.repositorySystem;
-        super.jrubyVersion = "1.7.2";
         super.jrubyFork = true;
         super.jrubyVerbose = false;
         super.unzip = unzip;
@@ -191,7 +191,7 @@ abstract class AbstractVagrantMojo extends AbstractGemMojo {
         factory.addEnv("VAGRANT_HOME", vagrantHome);
         factory.addEnv("VAGRANT_RC", vagrantRc);
         final Script script = factory.newScriptFromSearchPath("vagrant");
-        for (String arg : args) script.addArg(arg);
+        for (String arg : args) if (isNotBlank(arg)) script.addArg(arg);
         script.execute();
     }
 }

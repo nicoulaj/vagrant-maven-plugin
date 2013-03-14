@@ -68,8 +68,8 @@
 
     <!-- versions -->
     <java.level>1.5</java.level>
-    <vagrant.version>1.0.6</vagrant.version>
-    <gem-maven-plugin.version>0.29.3</gem-maven-plugin.version>
+    <vagrant.version>1.0.7</vagrant.version>
+    <gem-maven-plugin.version>1.0.0-beta</gem-maven-plugin.version>
     <maven-plugin-tools-javadoc.version>3.2</maven-plugin-tools-javadoc.version>
 
     <!-- integration tests settings -->
