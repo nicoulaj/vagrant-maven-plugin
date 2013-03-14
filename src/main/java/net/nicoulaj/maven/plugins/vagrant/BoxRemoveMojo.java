@@ -40,8 +40,15 @@ public final class BoxRemoveMojo extends AbstractVagrantMojo {
      */
     protected String box;
 
+    /**
+     * Box provider.
+     *
+     * @parameter
+     */
+    protected String provider;
+
     @Override
     protected void doExecute() throws IOException, ScriptException {
-        cli("box", "remove", box);
+        cli("box", "remove", box, provider);
     }
 }

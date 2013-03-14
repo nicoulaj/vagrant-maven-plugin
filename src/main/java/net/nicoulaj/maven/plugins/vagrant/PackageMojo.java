@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.codehaus.plexus.util.StringUtils.isEmpty;
+import static org.codehaus.plexus.util.StringUtils.isNotBlank;
 import static org.codehaus.plexus.util.StringUtils.join;
 
 /**
@@ -80,10 +81,10 @@ public final class PackageMojo extends AbstractVagrantMojo {
 
         args.add(NAME);
 
-        if (!isEmpty(vm))
+        if (isNotBlank(vm))
             args.add(vm);
 
-        if (!isEmpty(base)) {
+        if (isNotBlank(base)) {
             args.add("--base");
             args.add(base);
         }

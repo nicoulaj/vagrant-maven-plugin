@@ -68,7 +68,7 @@
 
     <!-- versions -->
     <java.level>1.5</java.level>
-    <vagrant.version>1.0.7</vagrant.version>
+    <vagrant.version>1.1.0</vagrant.version>
     <gem-maven-plugin.version>1.0.0-beta</gem-maven-plugin.version>
     <maven-plugin-tools-javadoc.version>3.2</maven-plugin-tools-javadoc.version>
 

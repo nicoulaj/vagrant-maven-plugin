@@ -19,7 +19,9 @@ import de.saumya.mojo.ruby.script.ScriptException;
 
 import java.io.IOException;
 
+import static org.codehaus.plexus.util.StringUtils.isBlank;
 import static org.codehaus.plexus.util.StringUtils.isEmpty;
+import static org.codehaus.plexus.util.StringUtils.isNotBlank;
 
 /**
  * Invokes Vagrant {@code init} command.
@@ -51,10 +53,10 @@ public final class InitMojo extends AbstractVagrantMojo {
     @Override
     protected void doExecute() throws IOException, ScriptException {
 
-        if (isEmpty(box))
+        if (isBlank(box))
             cli(NAME);
 
-        else if (isEmpty(url))
+        else if (isBlank(url))
             cli(NAME, box);
 
         else

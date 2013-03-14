@@ -18,6 +18,10 @@ package net.nicoulaj.maven.plugins.vagrant;
 import de.saumya.mojo.ruby.script.ScriptException;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.codehaus.plexus.util.StringUtils.isNotBlank;
 
 /**
  * Invokes Vagrant {@code box add} command.
@@ -55,13 +59,31 @@ public final class BoxAddMojo extends AbstractVagrantMojo {
      */
     protected boolean force;
 
+    /**
+     * If given, Vagrant will verify the box you're adding is for the given provider. By default, Vagrant automatically detects the proper provider to use.
+     *
+     * @parameter
+     */
+    protected String provider;
+
     @Override
     protected void doExecute() throws IOException, ScriptException {
 
-        if (force)
-            cli("box", "add", box, url, "--force");
+        final List<String> args = new ArrayList<String>();
 
-        else
-            cli("box", "add", box, url);
+        args.add("box");
+        args.add("add");
+        args.add(box);
+        args.add(url);
+
+        if (isNotBlank(provider)) {
+            args.add("--provider");
+            args.add(provider);
+        }
+
+        if (force)
+            args.add("--force");
+
+        cli(args);
     }
 }

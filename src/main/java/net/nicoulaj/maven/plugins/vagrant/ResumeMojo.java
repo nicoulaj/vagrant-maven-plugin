@@ -20,6 +20,7 @@ import de.saumya.mojo.ruby.script.ScriptException;
 import java.io.IOException;
 
 import static org.codehaus.plexus.util.StringUtils.isEmpty;
+import static org.codehaus.plexus.util.StringUtils.isNotBlank;
 
 /**
  * Invokes Vagrant {@code resume} command.
@@ -44,7 +45,7 @@ public final class ResumeMojo extends AbstractVagrantMojo {
     @Override
     protected void doExecute() throws IOException, ScriptException {
 
-        if (!isEmpty(vm))
+        if (isNotBlank(vm))
             cli(NAME, vm);
 
         else

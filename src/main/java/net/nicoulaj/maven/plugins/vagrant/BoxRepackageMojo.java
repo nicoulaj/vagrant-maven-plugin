@@ -40,8 +40,15 @@ public final class BoxRepackageMojo extends AbstractVagrantMojo {
      */
     protected String box;
 
+    /**
+     * Box provider.
+     *
+     * @parameter
+     */
+    protected String provider;
+
     @Override
     protected void doExecute() throws IOException, ScriptException {
-        cli("box", "repackage", box);
+        cli("box", "repackage", box, provider);
     }
 }

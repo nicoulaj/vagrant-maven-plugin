@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.codehaus.plexus.util.StringUtils.isEmpty;
+import static org.codehaus.plexus.util.StringUtils.isNotBlank;
 
 /**
  * Invokes Vagrant {@code halt} command.
@@ -57,7 +58,7 @@ public final class HaltMojo extends AbstractVagrantMojo {
 
         args.add(NAME);
 
-        if (!isEmpty(vm))
+        if (isNotBlank(vm))
             args.add(vm);
 
         if (force)

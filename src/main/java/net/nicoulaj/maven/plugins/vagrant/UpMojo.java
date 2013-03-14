@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.codehaus.plexus.util.StringUtils.isEmpty;
+import static org.codehaus.plexus.util.StringUtils.isNotBlank;
 import static org.codehaus.plexus.util.StringUtils.join;
 
 /**
@@ -58,6 +58,13 @@ public final class UpMojo extends AbstractVagrantMojo {
      */
     protected List<String> provisioners;
 
+    /**
+     * Box provider.
+     *
+     * @parameter
+     */
+    protected String provider;
+
     @Override
     protected void doExecute() throws IOException, ScriptException {
 
@@ -65,19 +72,22 @@ public final class UpMojo extends AbstractVagrantMojo {
 
         args.add(NAME);
 
-        if (!isEmpty(vm))
+        if (isNotBlank(vm))
             args.add(vm);
 
         if (!provision)
             args.add("--no-provision");
 
         else if (provisioners != null && !provisioners.isEmpty()) {
-            args.add("--provision");
             args.add("--provision-with");
             args.add(join(provisioners.iterator(), ","));
 
-        } else
-            args.add("--provision");
+        }
+
+        if (isNotBlank(provider)) {
+            args.add("--provider");
+            args.add(vm);
+        }
 
         cli(args);
     }

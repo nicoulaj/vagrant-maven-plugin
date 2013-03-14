@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.codehaus.plexus.util.StringUtils.isEmpty;
+import static org.codehaus.plexus.util.StringUtils.isNotBlank;
 
 /**
  * Invokes Vagrant {@code ssh} command.
@@ -71,10 +72,10 @@ public final class SshMojo extends AbstractVagrantMojo {
 
         args.add(NAME);
 
-        if (!isEmpty(vm))
+        if (isNotBlank(vm))
             args.add(vm);
 
-        if (!isEmpty(command)) {
+        if (isNotBlank(command)) {
             args.add("--command");
             args.add(command);
         }
@@ -82,7 +83,7 @@ public final class SshMojo extends AbstractVagrantMojo {
         if (plain)
             args.add("--plain");
 
-        if (!isEmpty(sshArgs)) {
+        if (isNotBlank(sshArgs)) {
             args.add("--");
             args.add(sshArgs);
         }
