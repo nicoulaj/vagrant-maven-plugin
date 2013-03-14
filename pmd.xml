@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="4.3" timestamp="2013-02-17T15:04:41.253">
+<pmd version="4.3" timestamp="2013-03-14T22:07:59.123">
 <file name="/home/nicoulaj/projects/vagrant-maven-plugin/target/checkout/target/generated-sources/plugin/net/nicoulaj/maven/plugins/vagrant/HelpMojo.java">
 <violation beginline="13" endline="13" begincolumn="1" endcolumn="26" rule="UnusedImports" ruleset="Import Statement Rules" externalInfoUrl="http://pmd.sourceforge.net/rules/imports.html#UnusedImports" priority="4">
 Avoid unused imports such as 'java.util.Iterator'
