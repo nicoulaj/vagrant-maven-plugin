@@ -20,7 +20,7 @@
   <parent>
     <groupId>net.ju-n</groupId>
     <artifactId>net-ju-n-parent</artifactId>
-    <version>23</version>
+    <version>26</version>
   </parent>
 
   <groupId>net.ju-n.maven.plugins</groupId>
@@ -67,7 +67,7 @@
   <properties>
 
     <!-- versions -->
-    <java.level>1.5</java.level>
+    <java.level>1.6</java.level>
     <vagrant.version>1.0.7</vagrant.version>
     <gem-maven-plugin.version>1.0.0-beta</gem-maven-plugin.version>
     <maven-plugin-tools-javadoc.version>3.2</maven-plugin-tools-javadoc.version>
@@ -131,19 +131,19 @@
   <build>
     <plugins>
       <plugin>
-        <artifactId>maven-enforcer-plugin</artifactId>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>animal-sniffer-maven-plugin</artifactId>
         <executions>
           <execution>
-            <id>enforce-java-version</id>
             <goals>
-              <goal>enforce</goal>
+              <goal>check</goal>
             </goals>
             <configuration>
-              <rules>
-                <requireJavaVersion>
-                  <version>(1.4,1.7)</version>
-                </requireJavaVersion>
-              </rules>
+              <signature>
+                <groupId>org.codehaus.mojo.signature</groupId>
+                <artifactId>java16</artifactId>
+                <version>1.0</version>
+              </signature>
             </configuration>
           </execution>
         </executions>
