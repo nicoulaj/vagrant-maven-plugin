@@ -16,6 +16,7 @@
 package net.nicoulaj.maven.plugins.vagrant;
 
 import de.saumya.mojo.ruby.script.ScriptException;
+import org.apache.maven.plugins.annotations.Mojo;
 
 import java.io.IOException;
 
@@ -23,10 +24,10 @@ import java.io.IOException;
  * Invokes Vagrant {@code box list} command.
  *
  * @author <a href="http://github.com/nicoulaj">Julien Nicoulaud</a>
- * @goal box-list
  * @since 1.0
  */
 @SuppressWarnings("unused")
+@Mojo(name = "box-list")
 public final class BoxListMojo extends AbstractVagrantMojo {
 
     /** Mojo/Vagrant command name. */

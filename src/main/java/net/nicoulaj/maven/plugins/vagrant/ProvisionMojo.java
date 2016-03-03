@@ -16,6 +16,8 @@
 package net.nicoulaj.maven.plugins.vagrant;
 
 import de.saumya.mojo.ruby.script.ScriptException;
+import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.Parameter;
 
 import java.io.IOException;
 
@@ -25,10 +27,10 @@ import static org.codehaus.plexus.util.StringUtils.isEmpty;
  * Invokes Vagrant {@code provision} command.
  *
  * @author <a href="http://github.com/nicoulaj">Julien Nicoulaud</a>
- * @goal provision
  * @since 1.0
  */
 @SuppressWarnings("unused")
+@Mojo(name = "provision")
 public final class ProvisionMojo extends AbstractVagrantMojo {
 
     /** Mojo/Vagrant command name. */
@@ -36,9 +38,8 @@ public final class ProvisionMojo extends AbstractVagrantMojo {
 
     /**
      * VM name.
-     *
-     * @parameter
      */
+    @Parameter
     protected String vm;
 
     @Override

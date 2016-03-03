@@ -16,6 +16,8 @@
 package net.nicoulaj.maven.plugins.vagrant;
 
 import de.saumya.mojo.ruby.script.ScriptException;
+import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.Parameter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,10 +30,10 @@ import static org.codehaus.plexus.util.StringUtils.join;
  * Invokes Vagrant {@code reload} command.
  *
  * @author <a href="http://github.com/nicoulaj">Julien Nicoulaud</a>
- * @goal reload
  * @since 1.0
  */
 @SuppressWarnings("unused")
+@Mojo(name = "reload")
 public final class ReloadMojo extends AbstractVagrantMojo {
 
     /** Mojo/Vagrant command name. */
@@ -39,23 +41,20 @@ public final class ReloadMojo extends AbstractVagrantMojo {
 
     /**
      * VM name.
-     *
-     * @parameter
      */
+    @Parameter
     protected String vm;
 
     /**
      * Enable or disable provisioning.
-     *
-     * @parameter default-value="true"
      */
+    @Parameter(defaultValue = "true")
     protected boolean provision;
 
     /**
      * Enable only certain provisioners, by type.
-     *
-     * @parameter
      */
+    @Parameter
     protected List<String> provisioners;
 
     @Override

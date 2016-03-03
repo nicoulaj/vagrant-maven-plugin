@@ -16,6 +16,8 @@
 package net.nicoulaj.maven.plugins.vagrant;
 
 import de.saumya.mojo.ruby.script.ScriptException;
+import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.Parameter;
 
 import java.io.IOException;
 
@@ -23,10 +25,10 @@ import java.io.IOException;
  * Invokes Vagrant {@code box add} command.
  *
  * @author <a href="http://github.com/nicoulaj">Julien Nicoulaud</a>
- * @goal box-add
  * @since 1.0
  */
 @SuppressWarnings("unused")
+@Mojo(name = "box-add")
 public final class BoxAddMojo extends AbstractVagrantMojo {
 
     /** Mojo/Vagrant command name. */
@@ -34,25 +36,20 @@ public final class BoxAddMojo extends AbstractVagrantMojo {
 
     /**
      * Box name.
-     *
-     * @parameter
-     * @required
      */
+    @Parameter(required = true)
     protected String box;
 
     /**
      * VM URL.
-     *
-     * @parameter
-     * @required
      */
+    @Parameter(required = true)
     protected String url;
 
     /**
      * Overwrite an existing box if it exists.
-     *
-     * @parameter default-value="false"
      */
+    @Parameter(defaultValue = "false")
     protected boolean force;
 
     @Override

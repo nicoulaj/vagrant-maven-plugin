@@ -16,6 +16,8 @@
 package net.nicoulaj.maven.plugins.vagrant;
 
 import de.saumya.mojo.ruby.script.ScriptException;
+import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.Parameter;
 
 import java.io.IOException;
 
@@ -25,10 +27,10 @@ import static org.codehaus.plexus.util.StringUtils.isEmpty;
  * Invokes Vagrant {@code init} command.
  *
  * @author <a href="http://github.com/nicoulaj">Julien Nicoulaud</a>
- * @goal init
  * @since 1.0
  */
 @SuppressWarnings("unused")
+@Mojo(name = "init")
 public final class InitMojo extends AbstractVagrantMojo {
 
     /** Mojo/Vagrant command name. */
@@ -36,16 +38,14 @@ public final class InitMojo extends AbstractVagrantMojo {
 
     /**
      * Box name.
-     *
-     * @parameter
      */
+    @Parameter
     protected String box;
 
     /**
      * Box URL.
-     *
-     * @parameter
      */
+    @Parameter
     protected String url;
 
     @Override

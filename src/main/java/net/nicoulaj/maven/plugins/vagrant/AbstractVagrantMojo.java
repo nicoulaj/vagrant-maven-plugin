@@ -16,6 +16,7 @@
 package net.nicoulaj.maven.plugins.vagrant;
 
 import de.saumya.mojo.gem.AbstractGemMojo;
+import de.saumya.mojo.jruby.AbstractJRubyMojo;
 import de.saumya.mojo.ruby.gems.GemManager;
 import de.saumya.mojo.ruby.script.Script;
 import de.saumya.mojo.ruby.script.ScriptException;
@@ -23,13 +24,17 @@ import org.apache.maven.artifact.repository.ArtifactRepository;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugin.descriptor.PluginDescriptor;
+import org.apache.maven.plugins.annotations.Component;
+import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
 import org.apache.maven.repository.RepositorySystem;
 import org.codehaus.classworlds.ClassRealm;
 import org.codehaus.plexus.archiver.UnArchiver;
+import org.sonatype.plexus.build.incremental.BuildContext;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
 
 import static java.util.Arrays.asList;
 import static org.codehaus.plexus.util.StringUtils.isNotBlank;
@@ -52,9 +57,9 @@ abstract class AbstractVagrantMojo extends AbstractGemMojo {
      * <li>Outside {@code project.basedir} (Vagrant default): user installation can impact build.</li>
      * </ul>
      *
-     * @parameter default-value="${project.build.directory}/vagrant/gems"
      * @since 1.0
      */
+    @Parameter(defaultValue = "${project.build.directory}/vagrant/gems")
     protected File gemHome;
 
     /**
@@ -67,9 +72,9 @@ abstract class AbstractVagrantMojo extends AbstractGemMojo {
      * <li>In {@code ~/.vagrant.d} (Vagrant default): user boxes can be directly used, but files are created outside of project structure.</li>
      * </ul>
      *
-     * @parameter default-value="${project.build.directory}/vagrant/vagrant.d"
      * @since 1.0
      */
+    @Parameter(defaultValue = "${project.build.directory}/vagrant/vagrant.d")
     protected File vagrantHome;
 
     /**
@@ -82,68 +87,63 @@ abstract class AbstractVagrantMojo extends AbstractGemMojo {
      * <li>In {@code ~/.vagrantrc} (Vagrant default): user installation can impact build.</li>
      * </ul>
      *
-     * @parameter default-value="${project.build.directory}/vagrant/vagrantrc"
      * @since 1.0
      */
+    @Parameter(defaultValue = "${project.build.directory}/vagrant/vagrantrc")
     protected File vagrantRc;
 
     /**
      * Required by {@link AbstractGemMojo}.
-     *
-     * @parameter property="project"
-     * @required
-     * @readonly
      */
-    private MavenProject project;
+    @Parameter( defaultValue = "${project}", readonly = true )
+    protected MavenProject project;
 
     /**
      * Required by {@link AbstractGemMojo}.
-     *
-     * @parameter property="plugin"
-     * @readonly
      */
-    private PluginDescriptor plugin;
+    @Parameter( defaultValue = "${plugin}", readonly = true )
+    protected PluginDescriptor plugin;
 
     /**
      * Required by {@link AbstractGemMojo}.
-     *
-     * @component
      */
-    private RepositorySystem repositorySystem;
+    @Component
+    protected RepositorySystem repositorySystem;
 
     /**
      * Required by {@link AbstractGemMojo}.
-     *
-     * @parameter default-value="${localRepository}"
-     * @required
-     * @readonly
      */
-    private ArtifactRepository localRepository;
+    @Parameter( readonly = true, defaultValue="${localRepository}" )
+    protected ArtifactRepository localRepository;
 
     /**
      * Required by {@link AbstractGemMojo}.
-     *
-     * @parameter property="dummyExpression"
-     * @readonly
      */
-    private ClassRealm classRealm;
+    @Parameter( readonly = true, defaultValue="${dummy}" )
+    protected ClassRealm classRealm;
 
     /**
      * Required by {@link AbstractGemMojo}.
      *
      * @component role-hint="zip"
      */
-    private UnArchiver unzip;
+    @Component(hint="zip")
+    protected UnArchiver unzip;
 
     /**
      * Required by {@link AbstractGemMojo}.
-     *
-     * @component
      */
-    private GemManager manager;
+    @Component
+    protected GemManager manager;
+
+    /**
+     * Required by {@link AbstractGemMojo}.
+     */
+    @Component
+    protected BuildContext buildContext;
 
     /** Setup {@link AbstractGemMojo}. */
-    private void setup() {
+    private void setup() throws MojoFailureException {
         super.project = this.project;
         super.localRepository = this.localRepository;
         super.classRealm = this.classRealm;
@@ -162,6 +162,15 @@ abstract class AbstractVagrantMojo extends AbstractGemMojo {
         super.binDirectory = new File(gemHome.getAbsolutePath() + "-" + plugin.getArtifactId(), "bin");
         super.supportNative = true;
         super.manager = this.manager;
+        try {
+            Field field = AbstractJRubyMojo.class.getDeclaredField("buildContext");
+            field.setAccessible(true);
+            field.set(this, buildContext);
+        } catch (NoSuchFieldException e) {
+            throw new MojoFailureException("Mojo configuration failed",e);
+        } catch (IllegalAccessException e) {
+            throw new MojoFailureException("Mojo configuration failed",e);
+        }
     }
 
     @Override

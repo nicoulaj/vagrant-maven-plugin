@@ -16,6 +16,8 @@
 package net.nicoulaj.maven.plugins.vagrant;
 
 import de.saumya.mojo.ruby.script.ScriptException;
+import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.Parameter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,10 +29,10 @@ import static org.codehaus.plexus.util.StringUtils.isEmpty;
  * Invokes Vagrant {@code halt} command.
  *
  * @author <a href="http://github.com/nicoulaj">Julien Nicoulaud</a>
- * @goal halt
  * @since 1.0
  */
 @SuppressWarnings("unused")
+@Mojo(name = "halt")
 public final class HaltMojo extends AbstractVagrantMojo {
 
     /** Mojo/Vagrant command name. */
@@ -38,16 +40,14 @@ public final class HaltMojo extends AbstractVagrantMojo {
 
     /**
      * VM name.
-     *
-     * @parameter
      */
+    @Parameter
     protected String vm;
 
     /**
      * Force shut down.
-     *
-     * @parameter default-value="false"
      */
+    @Parameter(defaultValue = "false")
     protected boolean force;
 
     @Override

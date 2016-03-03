@@ -20,7 +20,7 @@
   <parent>
     <groupId>net.ju-n</groupId>
     <artifactId>net-ju-n-parent</artifactId>
-    <version>26</version>
+    <version>37</version>
   </parent>
 
   <groupId>net.ju-n.maven.plugins</groupId>
@@ -69,7 +69,8 @@
     <!-- versions -->
     <java.level>1.6</java.level>
     <vagrant.version>1.0.7</vagrant.version>
-    <gem-maven-plugin.version>1.0.0-beta</gem-maven-plugin.version>
+    <gem-maven-plugin.version>1.1.4</gem-maven-plugin.version>
+    <maven-plugin-annotations.version>3.4</maven-plugin-annotations.version>
     <maven-plugin-tools-javadoc.version>3.2</maven-plugin-tools-javadoc.version>
 
     <!-- integration tests settings -->
@@ -101,6 +102,11 @@
         <type>gem</type>
       </dependency>
       <dependency>
+        <groupId>org.apache.maven.plugin-tools</groupId>
+        <artifactId>maven-plugin-annotations</artifactId>
+        <version>${maven-plugin-annotations.version}</version>
+      </dependency>
+      <dependency>
         <groupId>${project.groupId}.${project.artifactId}.it.boxes</groupId>
         <artifactId>${test.box}</artifactId>
         <version>${test.box.version}</version>
@@ -119,6 +125,11 @@
       <artifactId>vagrant</artifactId>
       <type>gem</type>
       <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.plugin-tools</groupId>
+      <artifactId>maven-plugin-annotations</artifactId>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>${project.groupId}.${project.artifactId}.it.boxes</groupId>
